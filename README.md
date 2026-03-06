@@ -27,7 +27,17 @@ Głównym elementem systemu jest klasa `MiniAutoML`, udostępniająca standardow
 System został poddany ewaluacji na zróżnicowanych zbiorach danych: **Raisin** (ekstrakcja cech z obrazów) , **Medical** (klasyfikacja ryzyka zgonu) oraz **Income** (dane demograficzne)
 
 **Główne wnioski z ewaluacji:**
-* **Wysoka stabilność:** Zmiana ziaren losowości (seeds) nie wpływa drastycznie na jakość predykcji, co potwierdza solidność zaimplementowanej selekcji. Zawsze generowany jest identyczny zestaw modeli w rankingu Top-5 dla danego ziarna.
-* **Adaptacyjność:** Różne zbiory danych preferują różne modele bazowe, co w pełni uzasadnia automatyczną selekcję zamiast polegania na jednym uniwersalnym algorytmie. Modele z jednej grupy często dominują na konkretnym zbiorze.
-* **Ensembling:** Wyniki dla najlepszego pojedynczego modelu z walidacji krzyżowej i modelu ensemble są do siebie bardzo zbliżone. Uśrednianie wyników Top-5 pozwala jednak na redukcję wariancji przy różnych podziałach danych.
+* **Wysoka stabilność:** Zmiana ziaren losowości (seeds) nie wpływa drastycznie na jakość predykcji, co potwierdza solidność zaimplementowanej selekcji. Zawsze generowany jest identyczny zestaw modeli w rankingu Top-5 dla danego ziarna
+* **Adaptacyjność:** Różne zbiory danych preferują różne modele bazowe, co w pełni uzasadnia automatyczną selekcję zamiast polegania na jednym uniwersalnym algorytmie. Modele z jednej grupy często dominują na konkretnym zbiorze
+* **Ensembling:** Wyniki dla najlepszego pojedynczego modelu z walidacji krzyżowej i modelu ensemble są do siebie bardzo zbliżone. Uśrednianie wyników Top-5 pozwala jednak na redukcję wariancji przy różnych podziałach danych
+
+
+![Częstotliwość wyboru modeli dla poszczególnych zbiorów danych](images/model_selection_frequency.png)
+*Rys. 1: Analiza preferencji algorytmów na podstawie częstotliwości ich wyboru do Top-5. Zauważalna jest wyraźna dominacja konkretnych rodzin modeli w zależności od zbioru danych*
+
+![Porównanie wyników najlepszego modelu i ensemblingu](images/cv_vs_ensemble_raisins.png)
+*Rys. 2: Zestawienie wyników najlepszego pojedynczego modelu z walidacji krzyżowej (Best CV) oraz modelu ensemble dla zbioru Raisin przy użyciu różnych ziaren losowości*
+
+![Stabilność wyników dla różnych ziaren losowości](images/cv_stability_across_seeds.png)
+*Rys. 3: Najlepsze wyniki Balanced Accuracy z walidacji krzyżowej dla każdego badanego zbioru danych. Wykres potwierdza że zmiana ziarna (seed) ma minimalny wpływ na jakość ostatecznej predykcji*
 
